@@ -33,7 +33,19 @@
             var sophone = $('#sophone').val();
             var diachi = $('#diachi').val();
             var email = $('#email').val();
-            console.log(hovaten, sophone, diachi, email);
+            var ghichu = $('#ghichu').val();
+            if (hovaten == '' || sophone == '' || diachi == '' || email == '' || ghichu == '') {
+                alert('rong')
+            }else {
+                $.ajax({
+                    url: "ajax_action.php",
+                    method: "POST",
+                    data: {hovaten: hovaten, sophone: sophone, diachi: diachi, email: email, ghichu: ghichu},
+                    success:function(data) {
+                        alert('Insert success');   
+                    }
+                });
+            }
         });
     </script>
 
