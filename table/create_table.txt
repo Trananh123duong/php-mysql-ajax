@@ -1,8 +1,8 @@
 CREATE TABLE tbl_khachhang (
     khachhang_id INT AUTO_INCREMENT PRIMARY KEY,
     hovaten VARCHAR(200) NOT NULL,
-    phone VARCHAR(100) NOT NULL,
+    sophone VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    address VARCHAR(150) NOT NULL,
+    diachi VARCHAR(150) NOT NULL,
     ghichu TEXT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

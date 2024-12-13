@@ -1,7 +1,7 @@
 <?php
-$connection = mysqli_connect('mysql', 'user', 'userpassword', 'phptestdb', 3306);
+$con = mysqli_connect('mysql', 'user', 'userpassword', 'phptestdb', 3306);
 
-if (!$connection) {
+if (!$con) {
     die('Connection failed: ' . mysqli_connect_error());
 }
 
