@@ -2,6 +2,7 @@
 
 include('db.php');
 
+//insert data
 if (isset($_POST['hovaten'])) {
     $hovaten = $_POST['hovaten'];
     $sophone = $_POST['sophone'];
@@ -12,6 +13,16 @@ if (isset($_POST['hovaten'])) {
     $result = mysqli_query($con, "insert into tbl_khachhang (hovaten,sophone,diachi,email,ghichu) values ('$hovaten','$sophone','$diachi','$email','$ghichu')");
 }
 
+//edit data
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+    $text = $_POST['text'];
+    $column_name = $_POST['column_name'];
+
+    $result = mysqli_query($con, "update tbl_khachhang set $column_name='$text' where khachhang_id = '$id'");
+}
+
+//list data
 $output = '';
 $sql_select = mysqli_query($con, 'select * from tbl_khachhang order by khachhang_id desc');
 $output .= '
@@ -29,11 +40,11 @@ if (mysqli_num_rows($sql_select) > 0) {
     while ($rows = mysqli_fetch_array($sql_select)) {
         $output .= '
             <tr>
-                <td> ' . $rows['hovaten'] . '</td>
-                <td> ' . $rows['sophone'] . '</td>
-                <td> ' . $rows['email'] . '</td>
-                <td> ' . $rows['diachi'] . '</td>
-                <td> ' . $rows['ghichu'] . '</td>
+                <td class="hovaten" data-id1='.$rows['khachhang_id'].' contenteditable> ' . $rows['hovaten'] . '</td>
+                <td class="sophone" data-id2='.$rows['khachhang_id'].' contenteditable> ' . $rows['sophone'] . '</td>
+                <td class="email" data-id3='.$rows['khachhang_id'].' contenteditable> ' . $rows['email'] . '</td>
+                <td class="diachi" data-id4='.$rows['khachhang_id'].' contenteditable> ' . $rows['diachi'] . '</td>
+                <td class="ghichu" data-id5='.$rows['khachhang_id'].' contenteditable> ' . $rows['ghichu'] . '</td>
             </tr>
         ';
     }

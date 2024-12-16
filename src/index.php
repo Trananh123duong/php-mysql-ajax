@@ -37,19 +37,63 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
+            //list data
             function fetch_data() {
                 $.ajax({
                     url: "ajax_action.php",
                     method: "POST",
                     success: function (data) {
                         $('#load_data').html(data);
-                        fetch_data();
                     }
                 });
             }
 
             fetch_data();
 
+            //edit data
+            function edit_data(id, text, column_name) {
+                $.ajax({
+                    url: "ajax_action.php",
+                    method: "POST",
+                    data: { id: id, text: text, column_name: column_name},
+                    success: function (data) {
+                        alert('Edit success');
+                        fetch_data();
+                    }
+                });
+            }
+            $(document).on('blur', '.hovaten', function() {
+                var id = $(this).data('id1');
+                var text = $(this).text();
+
+                edit_data(id,text,"hovaten");
+            })
+            $(document).on('blur', '.sophone', function() {
+                var id = $(this).data('id2');
+                var text = $(this).text();
+
+                edit_data(id, text, "sophone");
+            })
+            $(document).on('blur', '.email', function() {
+                var id = $(this).data('id3');
+                var text = $(this).text();
+
+                edit_data(id, text, "email");
+            })
+            $(document).on('blur', '.diachi', function() {
+                var id = $(this).data('id4');
+                var text = $(this).text();
+
+                edit_data(id, text, "diachi");
+            })
+            $(document).on('blur', '.ghichu', function() {
+                var id = $(this).data('id5');
+                var text = $(this).text();
+
+                edit_data(id, text, "ghichu");
+            })
+
+            // insert data
             $('#button_insert').on('click', function () {
                 var hovaten = $('#hovaten').val();
                 var sophone = $('#sophone').val();
