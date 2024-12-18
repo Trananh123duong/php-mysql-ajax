@@ -13,6 +13,13 @@ if (isset($_POST['hovaten'])) {
     $result = mysqli_query($con, "insert into tbl_khachhang (hovaten,sophone,diachi,email,ghichu) values ('$hovaten','$sophone','$diachi','$email','$ghichu')");
 }
 
+//delete data
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+
+    $result = mysqli_query($con, "delete from tbl_khachhang where khachhang_id = '$id'");
+}
+
 //edit data
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
@@ -34,6 +41,7 @@ $output .= '
                 <td>Email</td>
                 <td>Địa chỉ</td>
                 <td>Ghi chú</td>
+                <td>Quản lý</td>
             </tr>
 ';
 if (mysqli_num_rows($sql_select) > 0) {
@@ -45,13 +53,14 @@ if (mysqli_num_rows($sql_select) > 0) {
                 <td class="email" data-id3='.$rows['khachhang_id'].' contenteditable> ' . $rows['email'] . '</td>
                 <td class="diachi" data-id4='.$rows['khachhang_id'].' contenteditable> ' . $rows['diachi'] . '</td>
                 <td class="ghichu" data-id5='.$rows['khachhang_id'].' contenteditable> ' . $rows['ghichu'] . '</td>
+                <td><button data-id_xoa='.$rows['khachhang_id'].' class="btn btn-sm btn-danger del_data" name="delete_data">Xóa</button></td>
             </tr>
         ';
     }
 } else {
     $output .= '
         <tr>
-            <td colspan="5">Dữ liệu chưa có</td>
+            <td colspan="6">Dữ liệu chưa có</td>
         </tr>
     ';
 }

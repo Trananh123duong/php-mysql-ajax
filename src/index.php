@@ -50,6 +50,20 @@
 
             fetch_data();
 
+            //delete data
+            $(document).on('click', '.del_data', function () {
+                var id = $(this).data('id_xoa');
+                $.ajax({
+                    url: "ajax_action.php",
+                    method: "POST",
+                    data: { id: id},
+                    success: function (data) {
+                        alert('Delete success');
+                        fetch_data();
+                    }
+                });
+            });
+
             //edit data
             function edit_data(id, text, column_name) {
                 $.ajax({
